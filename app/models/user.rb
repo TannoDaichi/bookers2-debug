@@ -19,19 +19,32 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
   
   # フォローしたときの処理
-def follow(user_id)
-  relationships.create(followed_id: user_id)
-end
-# フォローを外すときの処理
-def unfollow(user_id)
-  relationships.find_by(followed_id: user_id).destroy
-end
-# フォローしているか判定
-def following?(user)
-  followings.include?(user)
-end
-
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+  # フォローを外すときの処理
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  # フォローしているか判定
+  def following?(user)
+    followings.include?(user)
+  end
   
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
   
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
