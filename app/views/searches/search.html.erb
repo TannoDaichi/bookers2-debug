@@ -1,8 +1,6 @@
-<h2>Results index</h2>
-
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "User" %>
+<% if @range == 'User' %>
+    <h3>User search for "<%= @word %>"</h3>
+    <table class='table table-hover table-inverse'>
     <thead>
         <tr>
             <td></td>
@@ -17,8 +15,10 @@
         </tr>
       <% end %>
     </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    </table>
+ <% elsif @range == 'Book' %>
+    <h3>Books search for "<%= @word %>"</h3>
+    <table class='table table-hover table-inverse'>
 <thead>
     <tr>
       <th></th>
@@ -36,5 +36,5 @@
         </tr>
       <% end %>
     </tbody>
-  <% end %>
-</table>
+    </table>
+<% end %>
