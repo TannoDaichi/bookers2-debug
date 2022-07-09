@@ -21,9 +21,9 @@
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
       <div class = "table_width">
+        <h3>投稿数の前日比・前週比</h3>
         <table class="table table-bordered">
           <thead>
-          <h2>投稿数の前日比・前週比</h2>
             <tr>
               <th>今日の投稿数</th>
               <th>前日の投稿数</th>
@@ -70,6 +70,34 @@
             </tr>
           </tbody>
         </table>
+        </div>
+        
+        <div class = "table_width">
+          <h3>７日間分の投稿数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>6日前</th>
+                <th>5日前</th>
+                <th>4日前</th>
+                <th>3日前</th>
+                <th>2日前</th>
+                <th>1日前</th>
+                <th>今日</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= @sixday_ago_book.count %></td>
+                <td><%= @fiveday_ago_book.count %></td>
+                <td><%= @fourday_ago_book.count %></td>
+                <td><%= @threeday_ago_book.count %></td>
+                <td><%= @twoday_ago_book.count %></td>
+                <td><%= @yesterday_book.count %></td>
+                <td><%= @today_book.count %></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
