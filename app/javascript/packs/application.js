@@ -8,6 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+require("chartkick") // 追記
+require("chart.js") // 追記
+
 
 import "jquery";
 import "popper.js";

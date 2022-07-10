@@ -99,6 +99,26 @@
             </tbody>
           </table>
         </div>
+        
+        <canvas id="myChart" width="300" height="100"> </canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script> 
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',                      
+        data: {
+            labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+            datasets: [{
+                label: "投稿数",
+                data: [<%= @sixday_ago_book.count %>, <%= @fiveday_ago_book.count %>, <%= @fourday_ago_book.count %>, <%= @threeday_ago_book.count %>, <%= @twoday_ago_book.count %>, <%= @yesterday_book.count %>, <%= @today_book.count%>],
+                backgroundColor: 'rgba(255, 80, 120, 1.0)',
+                borderColor: 'rgba(255, 80, 120, 1.0)',
+                fill: false
+            }]
+        },
+    });
+</script>
+        
       </div>
     </div>
   </div>
